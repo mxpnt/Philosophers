@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapontil <mapontil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 18:13:20 by maxime            #+#    #+#             */
-/*   Updated: 2022/04/19 10:58:57 by mapontil         ###   ########.fr       */
+/*   Updated: 2022/05/02 21:55:19 by maxime           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,25 @@
 # include "pthread.h"
 # include "limits.h"
 
+struct s_philo;
+
+
+typedef struct s_philo
+{
+	int				id;
+	int				left_fork_id;
+	int				right_fork_id;
+	struct s_data	*data;
+}	t_philo;
+
 typedef struct s_data
 {
-	int	nb;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	must_eat;
+	int				nb;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				must_eat;
+	t_philo			*philo;
 }	t_data;
 
 // error.c
