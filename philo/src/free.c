@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapontil <mapontil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/20 18:14:09 by maxime            #+#    #+#             */
-/*   Updated: 2022/05/03 10:38:35 by mapontil         ###   ########.fr       */
+/*   Created: 2022/05/03 10:18:52 by mapontil          #+#    #+#             */
+/*   Updated: 2022/05/03 10:36:18 by mapontil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-int	main(int argc, char **argv)
+void	free_all(t_data *data)
 {
-	t_data	data;
-
-	if (argc == 5 || argc == 6)
-	{
-		init_data(&data);
-		parsing_arg(argc, argv, &data);
-		launcher(&data);
-		free_all(&data);
-	}
-	else
-		error("Wrong number of argument");
-	return (0);
+	free(data->philo_id);
+	free(data->process_mutex);
+	free(data->philo);
 }

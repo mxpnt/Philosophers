@@ -6,7 +6,7 @@
 /*   By: mapontil <mapontil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 18:13:20 by maxime            #+#    #+#             */
-/*   Updated: 2022/05/03 09:48:08 by mapontil         ###   ########.fr       */
+/*   Updated: 2022/05/03 12:13:03 by mapontil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_philo
 	int				id;
 	int				left_fork_id;
 	int				right_fork_id;
+	struct timeval	last_meal;
 	struct s_data	*data;
 }	t_philo;
 
@@ -37,14 +38,26 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				must_eat;
+	struct timeval	time;
+	pthread_t		*philo_id;
+	pthread_mutex_t	*process_mutex;
+	pthread_mutex_t	left_fork_mutex;
+	pthread_mutex_t	right_fork_mutex;
+	pthread_mutex_t	eat_mutex;
 	t_philo			*philo;
 }	t_data;
 
 // error.c
 int				error(char *str);
 
+// free.c
+void			free_all(t_data *data);
+
 // init.c
 void			init_data(t_data *data);
+
+// launcher.c
+int				launcher(t_data *data);
 
 // parsing.c
 void			parsing_arg(int argc, char **argv, t_data *data);
