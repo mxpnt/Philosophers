@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapontil <mapontil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 18:13:20 by maxime            #+#    #+#             */
-/*   Updated: 2022/05/03 12:13:03 by mapontil         ###   ########.fr       */
+/*   Updated: 2022/05/03 21:13:46 by maxime           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ struct	s_philo;
 typedef struct s_philo
 {
 	int				id;
+	int				ate;
 	int				left_fork_id;
 	int				right_fork_id;
-	struct timeval	last_meal;
+	long long		last_meal;
+	pthread_t		philo_id;
 	struct s_data	*data;
 }	t_philo;
 
@@ -38,14 +40,17 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				must_eat;
-	struct timeval	time;
-	pthread_t		*philo_id;
-	pthread_mutex_t	*process_mutex;
-	pthread_mutex_t	left_fork_mutex;
-	pthread_mutex_t	right_fork_mutex;
+	int				deadge;
 	pthread_mutex_t	eat_mutex;
+	pthread_mutex_t	action_mutex;
+	pthread_mutex_t	*fork_mutex;
 	t_philo			*philo;
 }	t_data;
+
+// action.c
+void			philo_sleep(t_data *data, int id);
+void			sleeping(t_data *data);
+void			philo_think(t_data *data, int id);
 
 // error.c
 int				error(char *str);
@@ -68,5 +73,8 @@ int				is_not_number(char *str);
 int				is_not_limit(char *str);
 long long int	ft_atolli(char *str);
 void			ft_putstr_fd(char *s, int fd);
+
+// utils2.c
+long long int	gettime(void);
 
 #endif

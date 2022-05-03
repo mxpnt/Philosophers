@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mapontil <mapontil@student.42.fr>          +#+  +:+       +#+         #
+#    By: maxime <maxime@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/20 18:12:35 by maxime            #+#    #+#              #
-#    Updated: 2022/05/03 10:24:33 by mapontil         ###   ########.fr        #
+#    Updated: 2022/05/03 20:55:19 by maxime           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,12 +15,14 @@ NAME	=	philo
 INC		=	inc/philo.h
 
 SRC		=	main.c \
+			action.c \
 			error.c \
 			free.c \
 			init.c \
 			launcher.c \
 			parsing.c \
-			utils.c
+			utils.c \
+			utils2.c
 
 SRCS	=	${addprefix src/, ${SRC}}
 

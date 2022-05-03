@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapontil <mapontil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 10:18:52 by mapontil          #+#    #+#             */
-/*   Updated: 2022/05/03 10:36:18 by mapontil         ###   ########.fr       */
+/*   Updated: 2022/05/03 18:50:52 by maxime           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	free_all(t_data *data)
 {
-	free(data->philo_id);
-	free(data->process_mutex);
+	free(data->fork_mutex);
 	free(data->philo);
 }

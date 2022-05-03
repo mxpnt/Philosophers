@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapontil <mapontil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 18:32:30 by maxime            #+#    #+#             */
-/*   Updated: 2022/05/03 11:34:32 by mapontil         ###   ########.fr       */
+/*   Updated: 2022/05/03 19:49:23 by maxime           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,8 @@ static int	data_philo_init(t_data *data)
 	data->philo = malloc(data->nb * sizeof(t_philo));
 	if (!data->philo)
 		return (error("malloc"));
-	data->process_mutex = malloc(data->nb * sizeof(pthread_mutex_t));
-	if (!data->process_mutex)
-		return (error("malloc"));
-	data->philo_id = malloc(data->nb * sizeof(pthread_t));
-	if (!data->philo_id)
+	data->fork_mutex = malloc(data->nb * sizeof(pthread_mutex_t));
+	if (!data->fork_mutex)
 		return (error("malloc"));
 	return (0);
 }
@@ -50,6 +47,7 @@ static void	philo_init(t_data *data)
 	i = -1;
 	while (++i < data->nb)
 	{
+		data->philo[i].ate = 0;
 		data->philo[i].left_fork_id = i;
 		data->philo[i].right_fork_id = (i + 1) % data->nb;
 		data->philo[i].id = i + 1;
