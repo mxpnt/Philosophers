@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mapontil <mapontil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 18:32:30 by maxime            #+#    #+#             */
-/*   Updated: 2022/05/02 21:58:38 by maxime           ###   ########.fr       */
+/*   Updated: 2022/05/03 09:47:58 by mapontil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,8 @@
 
 static int	data_init(int i, char **arg, t_data *data)
 {
-	if (i == 1)
-		if (is_not_zero(arg[i]))
-			return (1);
-	if (is_not_number(arg[i]))
-		return (2);
-	if (is_not_limit(arg[i]))
-		return (3);
+	if (is_valid(arg[i]) || is_not_limit(arg[i]) || is_not_number(arg[i]))
+		return (error("not valid argument"));
 	if (i == 1)
 		data->nb = ft_atolli(arg[i]);
 	else if (i == 2)
@@ -38,7 +33,7 @@ static int	data_philo_init(t_data *data)
 {
 	data->philo = malloc(data->nb * sizeof(t_philo));
 	if (!data->philo)
-		return (1);
+		return (error("malloc"));
 	return (0);
 }
 
@@ -56,25 +51,19 @@ static void	philo_init(t_data *data)
 	}
 }
 
-int	parsing_arg(int argc, char **argv, t_data *data)
+void	parsing_arg(int argc, char **argv, t_data *data)
 {
 	int	i;
 
 	i = 0;
 	while (++i < argc)
-	{
-		if (data_init(i, argv, data) != 0)
-			return (1);
-	}
-	if (data_philo_init(data) != 0)
-		return (1);
+		data_init(i, argv, data);
+	data_philo_init(data);
 	philo_init(data);
-	i = 0;
-	while (i < data->nb)
-	{
-		dprintf(1, "%d = %d - %d - %d\n", i, data->philo[i].id, data->philo[i].left_fork_id, data->philo[i].right_fork_id);
-		i++;
-	}
-	dprintf(1, "ok");
-	return (0);
+	// i = 0;
+	// while (i < data->nb)
+	// {
+	// 	dprintf(1, "%d = %d - %d - %d\n", i, data->philo[i].id, data->philo[i].left_fork_id, data->philo[i].right_fork_id);
+	// 	i++;
+	// }
 }

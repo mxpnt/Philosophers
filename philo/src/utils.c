@@ -6,15 +6,15 @@
 /*   By: mapontil <mapontil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 19:03:16 by maxime            #+#    #+#             */
-/*   Updated: 2022/04/19 10:58:42 by mapontil         ###   ########.fr       */
+/*   Updated: 2022/05/03 09:38:47 by mapontil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-int	is_not_zero(char *str)
+int	is_valid(char *str)
 {
-	if (ft_atolli(str) == 0)
+	if (ft_atolli(str) < 1)
 		return (1);
 	return (0);
 }
@@ -63,4 +63,15 @@ long long int	ft_atolli(char *str)
 		i++;
 	}
 	return (res * neg);
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	if (!s)
+		return ;
+	while (*s)
+	{
+		write(fd, s, 1);
+		s++;
+	}
 }

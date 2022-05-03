@@ -6,18 +6,16 @@
 /*   By: mapontil <mapontil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 18:35:58 by maxime            #+#    #+#             */
-/*   Updated: 2022/03/21 10:00:20 by mapontil         ###   ########.fr       */
+/*   Updated: 2022/05/03 09:47:25 by mapontil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-int	error(int code)
+int	error(char *str)
 {
-	if (code == 1)
-	{
-		write(2, "Invalid Argument\n", 17);
-		return (1);
-	}
-	return (0);
+	write(2, "error: ", 7);
+	ft_putstr_fd(str, 2);
+	write(2, "\n", 1);
+	return (1);
 }

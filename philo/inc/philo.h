@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mapontil <mapontil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 18:13:20 by maxime            #+#    #+#             */
-/*   Updated: 2022/05/02 21:55:19 by maxime           ###   ########.fr       */
+/*   Updated: 2022/05/03 09:48:08 by mapontil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@
 # include "pthread.h"
 # include "limits.h"
 
-struct s_philo;
-
+struct	s_philo;
 
 typedef struct s_philo
 {
@@ -42,18 +41,19 @@ typedef struct s_data
 }	t_data;
 
 // error.c
-int				error(int code);
+int				error(char *str);
 
 // init.c
 void			init_data(t_data *data);
 
 // parsing.c
-int				parsing_arg(int argc, char **argv, t_data *data);
+void			parsing_arg(int argc, char **argv, t_data *data);
 
 // utils.c
-int				is_not_zero(char *str);
+int				is_valid(char *str);
 int				is_not_number(char *str);
 int				is_not_limit(char *str);
 long long int	ft_atolli(char *str);
+void			ft_putstr_fd(char *s, int fd);
 
 #endif
