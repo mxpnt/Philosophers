@@ -6,13 +6,13 @@
 /*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 19:31:13 by maxime            #+#    #+#             */
-/*   Updated: 2022/05/03 19:45:41 by maxime           ###   ########.fr       */
+/*   Updated: 2022/05/04 18:35:21 by maxime           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-long long int	gettime(void)
+long	gettime(void)
 {
 	struct timeval	time;
 

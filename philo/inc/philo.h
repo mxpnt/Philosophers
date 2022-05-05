@@ -6,7 +6,7 @@
 /*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 18:13:20 by maxime            #+#    #+#             */
-/*   Updated: 2022/05/03 21:13:46 by maxime           ###   ########.fr       */
+/*   Updated: 2022/05/04 18:36:39 by maxime           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_philo
 	int				ate;
 	int				left_fork_id;
 	int				right_fork_id;
-	long long		last_meal;
+	long			last_meal;
 	pthread_t		philo_id;
 	struct s_data	*data;
 }	t_philo;
@@ -41,6 +41,8 @@ typedef struct s_data
 	int				time_to_sleep;
 	int				must_eat;
 	int				deadge;
+	int				all_ate;
+	long			first_time;
 	pthread_mutex_t	eat_mutex;
 	pthread_mutex_t	action_mutex;
 	pthread_mutex_t	*fork_mutex;
@@ -51,6 +53,7 @@ typedef struct s_data
 void			philo_sleep(t_data *data, int id);
 void			sleeping(t_data *data);
 void			philo_think(t_data *data, int id);
+void			philo_die(t_data *data, int id);
 
 // error.c
 int				error(char *str);
@@ -71,10 +74,10 @@ void			parsing_arg(int argc, char **argv, t_data *data);
 int				is_valid(char *str);
 int				is_not_number(char *str);
 int				is_not_limit(char *str);
-long long int	ft_atolli(char *str);
+long long		ft_atolli(char *str);
 void			ft_putstr_fd(char *s, int fd);
 
 // utils2.c
-long long int	gettime(void);
+long			gettime(void);
 
 #endif
