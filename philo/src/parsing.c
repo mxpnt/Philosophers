@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mapontil <mapontil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 18:32:30 by maxime            #+#    #+#             */
-/*   Updated: 2022/05/07 12:04:31 by maxime           ###   ########.fr       */
+/*   Updated: 2022/05/09 11:06:10 by mapontil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,15 @@ static void	philo_init(t_data *data)
 	}
 }
 
-void	parsing_arg(int argc, char **argv, t_data *data)
+int	parsing_arg(int argc, char **argv, t_data *data)
 {
 	int	i;
 
 	i = 0;
 	while (++i < argc)
-		data_init(i, argv, data);
+		if (data_init(i, argv, data) != 0)
+			return (1);
 	data_philo_init(data);
 	philo_init(data);
-	// i = 0;
-	// while (i < data->nb)
-	// {
-	// 	dprintf(1, "%d = %d - %d - %d\n", i, data->philo[i].id, data->philo[i].left_fork_id, data->philo[i].right_fork_id);
-	// 	i++;
-	// }
+	return (0);
 }

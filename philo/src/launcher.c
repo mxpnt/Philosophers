@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launcher.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mapontil <mapontil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 09:51:09 by mapontil          #+#    #+#             */
-/*   Updated: 2022/05/07 18:48:02 by maxime           ###   ########.fr       */
+/*   Updated: 2022/05/09 12:49:47 by mapontil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ static void	check_death(t_data *data, t_philo *philo)
 		if (data->deadge == 1)
 			break ;
 		i = 0;
-		while (data->must_eat != -1 && i < data->nb && philo[i].ate >= data->must_eat)
+		while (data->must_eat != -1 && i < data->nb \
+		&& philo[i].ate >= data->must_eat)
 			i++;
 		if (i == data->nb)
 			data->all_ate = 1;
@@ -91,39 +92,21 @@ static void	destroy_mutex(t_data *data)
 	pthread_mutex_destroy(&(data->time_mutex));
 }
 
-// int	t_exit(t_data *data)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	while (++i < data->nb)
-// 		pthread_join(data->philo[i].philo_id, NULL);
-// 	return (0);
-// }
-
 int	launcher(t_data *data)
 {
 	int		i;
 
-	i = 0;
-	while (i < data->nb)
-	{
-		pthread_mutex_init(&(data->fork_mutex[i]), NULL);
-		i++;
-	}
-	pthread_mutex_init(&(data->eat_mutex), NULL);
-	pthread_mutex_init(&(data->action_mutex), NULL);
-	pthread_mutex_init(&(data->time_mutex), NULL);
+	init_mutex(data);
 	i = 0;
 	data->first_time = gettime(data);
 	while (i < data->nb)
 	{
-		if (pthread_create(&(data->philo[i].philo_id), NULL, routine, &(data->philo[i])) != 0)
+		if (pthread_create(&(data->philo[i].philo_id), NULL, \
+		routine, &(data->philo[i])) != 0)
 			return (error("pthread_create"));
 		data->philo[i].last_meal = gettime(data);
 		i++;
 	}
-	// dprintf(2, "=========%d\n", data->philo[i].id);
 	check_death(data, data->philo);
 	while (i > data->nb)
 	{

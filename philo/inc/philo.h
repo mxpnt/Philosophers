@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mapontil <mapontil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 18:13:20 by maxime            #+#    #+#             */
-/*   Updated: 2022/05/07 16:32:45 by maxime           ###   ########.fr       */
+/*   Updated: 2022/05/09 12:48:35 by mapontil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ typedef struct s_data
 void			philo_fork(t_data *data, int id);
 void			philo_eat(t_data *data, int id);
 void			philo_sleep(t_data *data, int id);
-void			sleeping(t_data *data, int time);
 void			philo_think(t_data *data, int id);
 void			philo_die(t_data *data, int id);
 
@@ -66,12 +65,16 @@ void			free_all(t_data *data);
 
 // init.c
 void			init_data(t_data *data);
+void			init_mutex(t_data *data);
 
 // launcher.c
 int				launcher(t_data *data);
 
 // parsing.c
-void			parsing_arg(int argc, char **argv, t_data *data);
+int				parsing_arg(int argc, char **argv, t_data *data);
+
+// sleeping.c
+void			sleeping(t_data *data, int time);
 
 // utils.c
 int				is_valid(char *str);

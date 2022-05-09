@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   sleeping.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapontil <mapontil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/20 18:14:09 by maxime            #+#    #+#             */
-/*   Updated: 2022/05/09 12:50:00 by mapontil         ###   ########.fr       */
+/*   Created: 2022/05/09 12:45:36 by mapontil          #+#    #+#             */
+/*   Updated: 2022/05/09 12:45:49 by mapontil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-int	main(int argc, char **argv)
+void	sleeping(t_data *data, int time)
 {
-	t_data	data;
+	long long	init_time;
+	int			wakeup;
 
-	if (argc == 5 || argc == 6)
+	init_time = gettime(data);
+	wakeup = 0;
+	while (data->deadge == 0 && wakeup == 0)
 	{
-		init_data(&data);
-		if (parsing_arg(argc, argv, &data) != 0)
-			return (1);
-		launcher(&data);
-		free_all(&data);
+		if ((gettime(data) - init_time) >= time)
+			wakeup = 1 ;
+		usleep(50);
 	}
-	else
-		error("wrong number of argument");
-	return (0);
 }
