@@ -6,7 +6,7 @@
 /*   By: mapontil <mapontil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 18:13:20 by maxime            #+#    #+#             */
-/*   Updated: 2022/05/09 12:48:35 by mapontil         ###   ########.fr       */
+/*   Updated: 2022/05/11 12:57:50 by mapontil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_philo
 	int				left_fork_id;
 	int				right_fork_id;
 	long			last_meal;
+	int				deadge;
 	pthread_t		philo_id;
 	struct s_data	*data;
 }	t_philo;
@@ -43,6 +44,7 @@ typedef struct s_data
 	int				deadge;
 	int				all_ate;
 	long long		first_time;
+	pthread_mutex_t	deadge_mutex;
 	pthread_mutex_t	eat_mutex;
 	pthread_mutex_t	action_mutex;
 	pthread_mutex_t	time_mutex;
@@ -85,5 +87,9 @@ void			ft_putstr_fd(char *s, int fd);
 
 // utils2.c
 long long		gettime(t_data *data);
+void			destroy_mutex(t_data *data);
+int				check_deadge(t_data *data);
+void			deadge(t_data *data, int i);
+void			all_eat(t_data *data, t_philo *philo);
 
 #endif

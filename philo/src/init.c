@@ -6,7 +6,7 @@
 /*   By: mapontil <mapontil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 18:23:08 by maxime            #+#    #+#             */
-/*   Updated: 2022/05/09 12:47:42 by mapontil         ###   ########.fr       */
+/*   Updated: 2022/05/11 11:49:25 by mapontil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	init_mutex(t_data *data)
 		pthread_mutex_init(&(data->fork_mutex[i]), NULL);
 		i++;
 	}
+	pthread_mutex_init(&(data->deadge_mutex), NULL);
 	pthread_mutex_init(&(data->eat_mutex), NULL);
 	pthread_mutex_init(&(data->action_mutex), NULL);
 	pthread_mutex_init(&(data->time_mutex), NULL);

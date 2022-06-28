@@ -6,7 +6,7 @@
 /*   By: mapontil <mapontil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 18:32:30 by maxime            #+#    #+#             */
-/*   Updated: 2022/05/09 11:06:10 by mapontil         ###   ########.fr       */
+/*   Updated: 2022/05/11 13:21:27 by mapontil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static void	philo_init(t_data *data)
 		data->philo[i].left_fork_id = i;
 		data->philo[i].right_fork_id = (i + 1) % data->nb;
 		data->philo[i].id = i;
+		data->philo[i].deadge = 0;
 		data->philo[i].data = data;
 	}
 }
